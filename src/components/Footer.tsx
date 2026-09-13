@@ -10,9 +10,29 @@ export default function Footer() {
         <h2 className="abs txt trim footer-heading">контакты:</h2>
 
         <ul className="abs footer-list">
-          <li>телеграм: @lyubimtseva_k</li>
-          <li>телефон: +7 (964) 986 17 16</li>
-          <li>почта: lyubimtseva.kr@mail.ru</li>
+          <li>
+            телеграм:{' '}
+            <a
+              href="https://t.me/lyubimtseva_k"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-contact-link"
+            >
+              @lyubimtseva_k
+            </a>
+          </li>
+          <li>
+            телефон: <a href="tel:+79649861716" className="footer-contact-link">+7 (964) 986 17 16</a>
+          </li>
+          <li>
+            почта: <a href="mailto:lyubimtseva.kr@mail.ru" className="footer-contact-link">lyubimtseva.kr@mail.ru</a>
+          </li>
+          <li>
+            <a href="https://disk.yandex.ru/i/Sy-X_VRM9JuD8g" target="_blank" rel="noreferrer" className="footer-link">
+              <ArrowIcon className="footer-arrow" />
+              резюме
+            </a>
+          </li>
           <li>
             <a href="https://www.behance.net/lyubimtseva" target="_blank" rel="noreferrer" className="footer-link">
               <ArrowIcon className="footer-arrow" />

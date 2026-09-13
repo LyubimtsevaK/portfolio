@@ -13,7 +13,7 @@ type ProjectCardProps = {
   description: string
   cta: string
   ctaHref?: string
-  onCtaClick?: (event: MouseEvent<HTMLAnchorElement>) => void
+  onCtaClick?: (event: MouseEvent<HTMLElement>) => void
   badge?: string
   disabled?: boolean
 }
@@ -33,8 +33,17 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const ctaClass = disabled ? 'pcard-cta pcard-cta--disabled' : 'pcard-cta'
 
+  // в мобильной версии (<1200px) кейс открывает вся карточка, не только кнопка;
+  // клик по самой ссылке не дублируем — его уже обрабатывает её собственный onClick
+  const onArticleClick = (event: MouseEvent<HTMLElement>) => {
+    if (!ctaHref || !onCtaClick) return
+    if (!window.matchMedia('(max-width: 1199.98px)').matches) return
+    if ((event.target as HTMLElement).closest('a')) return
+    onCtaClick(event)
+  }
+
   return (
-    <article className={`abs pcard ${className}`}>
+    <article className={`abs pcard ${className}`} onClick={onArticleClick}>
       <ul className="pcard-tags">
         {tags.map(({ label, desktop, mobile }) => (
           <li

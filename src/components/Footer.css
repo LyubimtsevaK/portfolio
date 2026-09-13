@@ -33,6 +33,19 @@
   white-space: nowrap;
 }
 
+/* телеграм/телефон/почта: внешне обычный текст, подчёркивание — только как подсказка про кликабельность */
+.footer-contact-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+
 .footer-link {
   position: relative;
   display: block;

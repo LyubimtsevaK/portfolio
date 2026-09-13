@@ -21,7 +21,7 @@ type ProjectsGridProps = {
 }
 
 export default function ProjectsGrid({ onOpenCase }: ProjectsGridProps) {
-  const openRoutesVibes = (event: MouseEvent<HTMLAnchorElement>) => {
+  const openRoutesVibes = (event: MouseEvent<HTMLElement>) => {
     // ctrl/cmd/средняя кнопка — пусть браузер откроет ссылку в новой вкладке как обычно
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()

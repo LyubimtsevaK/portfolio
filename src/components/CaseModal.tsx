@@ -1,8 +1,8 @@
-import { useEffect, useRef, type CSSProperties, type MouseEvent, type ReactNode, type RefObject } from 'react'
-import blob4 from '../assets/blobs/blob-4.svg'
-import blob5 from '../assets/blobs/blob-5.svg'
-import blob6 from '../assets/blobs/blob-6.svg'
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode, type RefObject } from 'react'
 import './CaseModal.css'
+
+// держать синхронно с длительностью .case-panel--closing в CaseModal.css
+const CLOSE_DURATION_MS = 300
 
 type CaseModalProps = {
   titleId: string
@@ -16,6 +16,21 @@ type CaseModalProps = {
 
 export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClose, children }: CaseModalProps) {
   const panelRef = useRef<HTMLDivElement>(null)
+  const [closing, setClosing] = useState(false)
+  // не state: нужен как guard от повторного запуска и чтобы снять таймер при размонтировании
+  const closeTimerRef = useRef<number | null>(null)
+
+  // запускает анимацию закрытия и только по её окончании вызывает реальный onClose
+  // (он убирает #routes-vibes из истории — именно это размонтирует модалку)
+  const requestClose = () => {
+    if (closeTimerRef.current !== null) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onClose()
+      return
+    }
+    setClosing(true)
+    closeTimerRef.current = window.setTimeout(onClose, CLOSE_DURATION_MS)
+  }
 
   useEffect(() => {
     const root = document.documentElement
@@ -24,19 +39,20 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
     panelRef.current?.focus({ preventScroll: true })
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape') requestClose()
     }
     document.addEventListener('keydown', onKeyDown)
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current)
       root.classList.remove('case-open')
       returnFocusRef.current?.focus({ preventScroll: true })
     }
   }, [onClose, returnFocusRef])
 
   const onSceneClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (!panelRef.current?.contains(event.target as Node)) onClose()
+    if (!panelRef.current?.contains(event.target as Node)) requestClose()
   }
 
   const stageVars = {
@@ -46,13 +62,9 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
   } as CSSProperties
 
   return (
-    <div className="case-overlay">
+    <div className={closing ? 'case-overlay case-overlay--closing' : 'case-overlay'}>
       <div className="case-scene">
         <div className="case-stage" style={stageVars} onClick={onSceneClick}>
-          <img src={blob5} alt="" aria-hidden="true" className="case-blob case-blob--5" />
-          <img src={blob4} alt="" aria-hidden="true" className="case-blob case-blob--4" />
-          <img src={blob6} alt="" aria-hidden="true" className="case-blob case-blob--6" />
-
           <div
             ref={panelRef}
             role="dialog"
@@ -61,7 +73,7 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
             tabIndex={-1}
             className="case-panel"
           >
-            <button type="button" className="case-close" aria-label="Закрыть кейс" onClick={onClose}>
+            <button type="button" className="case-close" aria-label="Закрыть кейс" onClick={requestClose}>
               <span aria-hidden="true" />
               <span aria-hidden="true" />
             </button>
