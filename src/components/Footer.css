@@ -1,0 +1,121 @@
+/* Футер по координатам макетов Figma; общие правила сцены в stage.css */
+
+.footer {
+  background-color: var(--color-footer);
+  color: var(--color-bg);
+}
+
+.footer-stage {
+  --stage-h: 398;
+}
+
+.footer-heading {
+  --fs: 44;
+  --y: 30;
+  left: 50%;
+  translate: -50% 0;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+.footer-list {
+  --y: 92;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(18 * var(--u));
+  width: 100%;
+  font-size: calc(14 * var(--u));
+  line-height: calc(19 * var(--u));
+  white-space: nowrap;
+}
+
+.footer-link {
+  position: relative;
+  display: block;
+  padding-left: calc(20 * var(--u));
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+
+.footer-arrow {
+  position: absolute;
+  left: calc(2.02 * var(--u));
+  top: calc(5 * var(--u));
+  width: calc(10.394 * var(--u));
+  height: calc(10.302 * var(--u));
+}
+
+.footer-thanks {
+  --fs: 38;
+  --L: 1.042;
+  --x: 30;
+  --y: 272;
+  width: calc(317 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+}
+
+.footer-cat {
+  --x: 240; --y: 225; --w: 135.388; --h: 135.388; --img: 115.996;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-cat img {
+  flex-shrink: 0;
+  width: calc(var(--img) * var(--u));
+  height: calc(var(--img) * var(--u));
+  max-width: none;
+  object-fit: cover;
+  rotate: -10.62deg;
+}
+
+/* 640 */
+@media (min-width: 600px) {
+  .footer-stage { --stage-h: 404; }
+  .footer-heading { --x: 30; left: calc(var(--x) * var(--u)); translate: none; }
+  .footer-list { --x: 30; left: calc(var(--x) * var(--u)); align-items: flex-start; width: auto; }
+  .footer-thanks { --fs: 44; --L: 1; --y: 302; width: auto; white-space: nowrap; }
+  .footer-cat { --x: 384.19; --y: 9.14; --w: 226.081; --h: 226.081; --img: 193.699; }
+}
+
+/* 1440 */
+@media (min-width: 1200px) {
+  .footer-stage { --stage-h: 524; }
+  .footer-heading { --fs: 64; --x: 80; --y: 60; }
+
+  .footer-list {
+    --x: 80;
+    --y: 156;
+    gap: calc(10 * var(--u));
+    font-size: calc(20 * var(--u));
+    line-height: calc(27 * var(--u));
+  }
+
+  .footer-arrow {
+    left: 0;
+    top: calc(7 * var(--u));
+    width: calc(14.43 * var(--u));
+    height: calc(14.303 * var(--u));
+  }
+
+  .footer-thanks { --fs: 64; --x: 80; --y: 404; }
+  .footer-cat { --x: 918.76; --y: 22.93; --w: 431.35; --h: 431.35; --img: 369.567; }
+}
+
+/* 1920 */
+@media (min-width: 1680px) {
+  .footer-stage { --stage-h: 564; }
+  .footer-heading { --y: 77; }
+  .footer-list { --y: 173; }
+  .footer-thanks { --fs: 84; --y: 421; }
+  .footer-cat { --x: 1247; --y: -12; --w: 563.746; --h: 563.746; --img: 483; }
+}

@@ -1,0 +1,220 @@
+/* Шапка — коллаж по координатам макетов Figma; общие правила сцены в stage.css */
+
+.hero-stage {
+  --stage-h: 678.5;
+}
+
+.hero-blob--4 {
+  rotate: 15deg;
+}
+
+/* line-height: 1 + сдвиг на 0.163em = верх заглавных Hauora там же, где text-box-trim в Figma */
+.hero-text {
+  margin-top: -0.163em;
+  font-size: calc(var(--fs) * var(--u));
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.hero-title {
+  font-weight: 700;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+.hero-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo-frame {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--iw) * var(--u));
+  height: calc(var(--ih) * var(--u));
+  border: 3px solid var(--color-pink);
+  rotate: 5.7deg;
+}
+
+.hero-photo-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.hero-bar {
+  background-color: var(--color-pink);
+}
+
+.hero-bar-text {
+  font-weight: 500;
+  color: #fff;
+}
+
+.hero-paren {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(59.403 * var(--u));
+  height: calc(90.836 * var(--u));
+}
+
+.hero-paren > span {
+  flex-shrink: 0;
+  width: calc(47.93 * var(--u));
+  height: calc(85.082 * var(--u));
+  font-family: var(--font-accent);
+  font-size: calc(var(--fs) * var(--u));
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+  rotate: 7.9deg;
+  transform: skewX(-0.15deg);
+}
+
+/* верх заглавных Arsenal SC при line-height: 1 */
+.hero-paren > span > span {
+  display: block;
+  margin-top: -0.223em;
+}
+
+.hero-word {
+  font-weight: 700;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* Figma округляет авто-интервал Hauora (1.366) до целых px: 16→22, 12→16; сдвиг подобран замером против экспорта */
+.hero-para {
+  width: calc(var(--w) * var(--u));
+  margin-top: -0.257em;
+  font-size: calc(var(--fs) * var(--u));
+  line-height: calc(round(calc(var(--fs) * 1.366), 1) * var(--u));
+  text-align: justify;
+  color: #000;
+}
+
+.hero-skills {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap) * var(--u));
+}
+
+.hero-skill {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+.hero-skill img {
+  position: absolute;
+  max-width: none;
+}
+
+.hero-skill--prototype img {
+  left: -19.29%;
+  top: -17.36%;
+  width: 138.93%;
+  height: 134.72%;
+}
+
+.hero-skill--ui img {
+  left: -8.16%;
+  top: -8.16%;
+  width: 116.67%;
+  height: 116.67%;
+}
+
+.hero-skill--figma img,
+.hero-skill--flows img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 402 */
+.hero-blob--5 { --x: -284.1; --y: -150.1; --w: 585.2; --h: 423.2; }
+.hero-blob--4 { --x: 120.1; --y: 160.2; --w: 513.5; --h: 416.9; }
+.hero-title { --x: 25; --y: 28; --fs: 68; }
+.hero-photo { --x: 70.52; --y: 62; --w: 259.055; --h: 308.306; --iw: 231.721; --ih: 286.706; }
+.hero-bar { --x: 103; --y: 346; --w: 196; --h: 24; }
+.hero-bar-text { --x: 105; --y: 348; --fs: 23; }
+.hero-paren--open { --x: 61.01; --y: 373; --fs: 74; }
+.hero-paren--close { --x: 301.01; --y: 373; --fs: 74; }
+.hero-word--1 { --x: 108.02; --y: 380; --fs: 31; }
+.hero-word--2 { --x: 137.02; --y: 406; --fs: 31; }
+.hero-para { --x: 73; --y: 455; --w: 257; --fs: 12; }
+.hero-skills { --x: 25; --y: 532; --gap: 28; }
+.hero-skill--prototype { --w: 59; --h: 60; }
+.hero-skill--figma { --w: 72; --h: 72; }
+.hero-skill--ui { --w: 69; --h: 68; }
+.hero-skill--flows { --w: 69; --h: 54; }
+
+/* 640 */
+@media (min-width: 600px) {
+  .hero-stage { --stage-h: 456.8; }
+  .hero-blob--5 { --x: -364.1; --y: -188.1; --w: 792.2; --h: 560.2; }
+  .hero-blob--4 { --x: 259.5; --y: 225.2; --w: 639.5; --h: 498.3; }
+  .hero-title { --x: 51; --y: 54; --fs: 104; }
+  .hero-photo { --x: 342.46; --y: 110.69; --w: 219.644; --h: 261.402; --iw: 196.469; --ih: 243.088; }
+  .hero-bar { --x: 192.99; --y: 142; }
+  .hero-bar-text { --x: 194.99; --y: 144; }
+  .hero-paren--open { --x: 77; --y: 172; }
+  .hero-paren--close { --x: 317; --y: 172; }
+  .hero-word--1 { --x: 124.01; --y: 179; }
+  .hero-word--2 { --x: 153.01; --y: 205; }
+  .hero-para { --x: 92.99; --y: 244; --w: 241; }
+  .hero-skills { --x: 92.99; --y: 312; --gap: 7; }
+}
+
+/* 1440 */
+@media (min-width: 1200px) {
+  .hero-stage { --stage-h: 836.6; }
+  .hero-blob--5 { --x: -378.1; --y: -172.1; --w: 944.2; --h: 647.2; }
+  .hero-blob--4 { --x: 764.97; --y: 333.9; --w: 991.7; --h: 726; }
+  .hero-title { --x: 131; --y: 98; --fs: 228; }
+  .hero-photo { --x: 745.24; --y: 225.5; --w: 390.145; --h: 464.319; --iw: 348.98; --ih: 431.788; }
+  .hero-bar { --x: 390; --y: 278; --w: 424; --h: 60; }
+  .hero-bar-text { --x: 398; --y: 288; --fs: 49; }
+  .hero-paren--open { --x: 168.01; --y: 359; --fs: 133; }
+  .hero-paren--close { --x: 697.01; --y: 359; --fs: 133; }
+  .hero-word--1 { --x: 257.01; --y: 350; --fs: 70; }
+  .hero-word--2 { --x: 316.01; --y: 408.11; --fs: 70; }
+  .hero-para { --x: 390; --y: 491; --w: 341; --fs: 16; }
+  .hero-skills { --x: 389; --y: 591; --gap: 24; }
+  .hero-skill--prototype { --w: 77; --h: 79; }
+  .hero-skill--figma { --w: 94; --h: 94; }
+  .hero-skill--ui { --w: 90; --h: 90; }
+  .hero-skill--flows { --w: 91; --h: 71; }
+}
+
+/* 1920 */
+@media (min-width: 1680px) {
+  .hero-stage { --stage-h: 864.3; }
+  .hero-blob--5 { --x: -482.07; --y: -243.1; --w: 998.2; --h: 678.2; }
+  .hero-blob--4 { --x: 1134.1; --y: 270.6; --w: 1065.48; --h: 773.69; }
+  .hero-title { --x: 216; --y: 96; --fs: 288; }
+  .hero-photo { --x: 1038.63; --y: 253; --w: 400.785; --h: 476.982; --iw: 358.497; --ih: 443.564; }
+  .hero-bar { --x: 601; --y: 315; --w: 549; --h: 71; }
+  .hero-bar-text { --x: 609; --y: 325; --fs: 64; }
+  .hero-paren--open { --x: 345; --y: 410.2; }
+  .hero-paren--close { --x: 981.6; --y: 409.2; }
+  .hero-word--1 { --x: 450.93; --y: 394; --fs: 84; }
+  .hero-word--2 { --x: 522.49; --y: 460.11; --fs: 84; }
+  .hero-para { --x: 601; --y: 550; --w: 427; }
+  .hero-skills { --x: 601; --y: 634; --gap: 38; }
+  .hero-skill--prototype { --w: 94; --h: 96; }
+  .hero-skill--figma { --w: 115; --h: 114; }
+  .hero-skill--ui { --w: 109; --h: 110; }
+  .hero-skill--flows { --w: 111; --h: 86; }
+}

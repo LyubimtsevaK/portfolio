@@ -1,0 +1,233 @@
+/* Блок «проекты» по координатам макетов Figma; общие правила сцены в stage.css */
+
+.projects-stage {
+  --stage-h: 945.5;
+}
+
+.projects-title {
+  --fs: 34;
+  --y: 5.5;
+  left: calc(50% + 0.5 * var(--u));
+  translate: -50% 0;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+.projects-blob--6 {
+  --x: -186.1; --y: -200.6; --w: 521.676; --h: 652.568;
+  rotate: 65.62deg;
+}
+
+.projects-blob--7 {
+  --x: 153.1; --y: 526.8; --w: 513.471; --h: 416.851;
+  rotate: 15deg;
+}
+
+/* в мобильных макетах карточка фиксированной высоты и CTA прижат к низу, в десктопных — высота по содержимому */
+.pcard {
+  display: flex;
+  flex-direction: column;
+  gap: calc(14 * var(--u));
+  width: calc(285 * var(--u));
+  height: calc(393 * var(--u));
+  padding: calc(14 * var(--u)) calc(14 * var(--u)) calc(16 * var(--u));
+  background-color: #fff;
+}
+
+.pcard--1 { --x: 59; --y: 59.5; }
+.pcard--2 { --x: 59; --y: 472.5; }
+
+/* 4 тега не помещаются в 257px мобильной карточки — последний переносится на вторую строку */
+.pcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(6 * var(--u));
+  opacity: 0.6;
+}
+
+.pcard-tag {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--tag-m) * var(--u));
+  height: calc(23 * var(--u));
+  padding-top: calc(1 * var(--u));
+  font-size: calc(16 * var(--u));
+  line-height: calc(22 * var(--u));
+  text-align: center;
+  white-space: nowrap;
+  color: var(--color-lime);
+}
+
+.pcard-tag::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  border-radius: calc(14 * var(--u));
+}
+
+.pcard-media {
+  position: relative;
+  flex-shrink: 0;
+  height: calc(155 * var(--u));
+}
+
+.pcard-media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pcard-badge {
+  position: absolute;
+  left: calc(8 * var(--u));
+  bottom: calc(8 * var(--u));
+  width: calc(114 * var(--u));
+  height: calc(27 * var(--u));
+  border-radius: calc(6 * var(--u));
+  background-color: var(--color-pink);
+  font-size: calc(16 * var(--u));
+  font-weight: 600;
+  line-height: calc(27 * var(--u));
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.pcard-title {
+  --fs: 20;
+  --L: 0.866;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+}
+
+.pcard-foot {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.pcard-desc {
+  --fs: 12;
+  --L: 1.3333;
+  margin-top: calc((0.337 - var(--L) / 2) * 1em);
+  margin-bottom: calc((0.383 - var(--L) / 2) * 1em);
+  text-align: justify;
+  color: #000;
+}
+
+.pcard-cta {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: auto;
+  height: calc(19 * var(--u));
+  padding-left: calc(22 * var(--u));
+  font-size: calc(14 * var(--u));
+  font-weight: 700;
+  line-height: calc(19 * var(--u));
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.pcard-cta--disabled {
+  color: var(--color-muted);
+}
+
+.pcard-arrow {
+  position: absolute;
+  left: calc(1.16 * var(--u));
+  top: calc(4 * var(--u));
+  width: calc(12.108 * var(--u));
+  height: calc(12.001 * var(--u));
+}
+
+/* 640 */
+@media (min-width: 600px) {
+  .projects-stage { --stage-h: 542.2; }
+  .projects-title { --fs: 44; --y: 7.2; left: 50%; }
+  .projects-blob--6 { --x: -272.3; --y: 72.9; --w: 621.804; --h: 822.011; }
+  .projects-blob--7 { display: none; }
+  .pcard--1 { --x: 30; --y: 69.2; }
+  .pcard--2 { --x: 325; --y: 69.2; }
+}
+
+/* 1440 */
+@media (min-width: 1200px) {
+  .projects-stage { --stage-h: 987.4; }
+  .projects-title { --fs: 64; --y: 10.4; }
+  .projects-blob--6 { --x: -145.6; --y: 61.4; --w: 807.813; --h: 1136.79; }
+
+  .pcard {
+    gap: calc(20 * var(--u));
+    width: calc(573 * var(--u));
+    height: auto;
+    padding: calc(30 * var(--u));
+  }
+
+  .pcard--1 { --x: 137; --y: 116.4; }
+  .pcard--2 { --x: 730; --y: 116.4; }
+
+  .pcard-tags { gap: calc(10 * var(--u)); opacity: 1; }
+
+  .pcard-tag {
+    width: calc(var(--tag-d) * var(--u));
+    height: calc(22 * var(--u));
+    padding-top: 0;
+    font-size: calc(20 * var(--u));
+    line-height: calc(22 * var(--u));
+  }
+
+  /* рамка 27px выше контейнера 22px и центрирована, как в макете */
+  .pcard-tag::before { inset: calc(-2.5 * var(--u)) 0; }
+
+  .pcard-media { height: calc(346 * var(--u)); }
+
+  .pcard-badge {
+    left: calc(13 * var(--u));
+    bottom: calc(14 * var(--u));
+    width: calc(149 * var(--u));
+    height: calc(39 * var(--u));
+    border-radius: calc(11 * var(--u));
+    font-size: calc(20 * var(--u));
+    font-weight: 700;
+    line-height: calc(39 * var(--u));
+  }
+
+  /* в макете «63.4%» — доля от авто-интервала Hauora (1.366), т.е. те же 0.866 кегля, что и на мобильных */
+  .pcard-title { --fs: 38; }
+
+  .pcard-foot { flex: none; gap: calc(38 * var(--u)); }
+  .pcard--2 .pcard-foot { gap: calc(60 * var(--u)); }
+
+  .pcard-desc { --fs: 16; --L: 1.375; margin: 0; color: var(--color-ink); }
+
+  .pcard-cta {
+    margin-top: 0;
+    height: calc(27 * var(--u));
+    padding-left: calc(20 * var(--u));
+    font-size: calc(20 * var(--u));
+    line-height: calc(27 * var(--u));
+  }
+
+  .pcard-arrow {
+    left: 0;
+    top: calc(7 * var(--u));
+    width: calc(14.43 * var(--u));
+    height: calc(14.303 * var(--u));
+  }
+}
+
+/* 1920 */
+@media (min-width: 1680px) {
+  .projects-stage { --stage-h: 962.7; }
+  .projects-title { --fs: 84; --y: 13.7; }
+  .projects-blob--6 { --x: -53.6; --y: 96.7; }
+  .pcard--1 { --x: 377; --y: 133.7; }
+  .pcard--2 { --x: 970; --y: 133.7; }
+}

@@ -1,0 +1,57 @@
+/* Секции-«сцены» по координатам макетов Figma (402/640/1440/1920).
+   --u = 1px макета в текущей ширине, поэтому композиция масштабируется целиком.
+   Брейкпоинты должны совпадать с <source media> в Blob.tsx. */
+
+.stage-section {
+  position: relative;
+  overflow-x: clip;
+  container-type: inline-size;
+}
+
+.stage {
+  --u: calc(100cqw / 402);
+  position: relative;
+  width: 100%;
+  height: calc(var(--stage-h) * var(--u));
+  margin-inline: auto;
+}
+
+@media (min-width: 600px) {
+  .stage { --u: calc(100cqw / 640); }
+}
+
+@media (min-width: 1200px) {
+  .stage { --u: calc(100cqw / 1440); }
+}
+
+@media (min-width: 1680px) {
+  .stage { --u: calc(min(100cqw, 1920px) / 1920); max-width: 1920px; }
+}
+
+.abs {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+}
+
+.box {
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+.blob {
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.txt {
+  font-size: calc(var(--fs) * var(--u));
+  line-height: var(--L, 1);
+}
+
+/* обрезка строки Hauora до верха заглавных и базовой линии — аналог text-box-trim из Figma; --L = line-height в долях кегля */
+.trim {
+  margin-top: calc((0.337 - var(--L, 1) / 2) * 1em);
+  margin-bottom: calc((0.383 - var(--L, 1) / 2) * 1em);
+}
