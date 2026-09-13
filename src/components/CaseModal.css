@@ -39,12 +39,13 @@
   container-type: inline-size;
 }
 
-/* --gap — полоса блюра над панелью на мобильных, в px макета */
+/* --gap — полоса блюра над и под панелью на мобильных, в px макета (было только сверху — снизу блюр
+   обрывался вместе с панелью и выглядел обрезанным) */
 .case-stage {
   --u: calc(100cqw / 402);
   --gap: 40;
   position: relative;
-  height: calc((var(--panel-hm) + var(--gap)) * var(--u));
+  height: calc((var(--panel-hm) + var(--gap) * 2) * var(--u));
 }
 
 .case-panel {
@@ -104,15 +105,24 @@
   outline: none;
 }
 
-/* крестик из макета: коробка 40×39, две полосы 3×37 с центром (19.5, 19.5); --cu — масштаб коробки */
+/* Крестик — сиблинг .case-stage (не внутри .case-panel: там анимация двигает translate,
+   а position:fixed внутри анимируемого элемента на время анимации перестаёт быть fixed
+   относительно экрана), поэтому свой --u.
+   <1200px — закреплён в углу экрана поверх прокрутки, с белой подложкой, чтобы не сливаться
+   с текстом/картинками под собой. ≥1200px — как в макете: внутри контента, --u/1247/90 —
+   пересчитанные координаты 1123/30 из .case-panel (была left:124, top:60) в координаты .case-stage. */
 .case-close {
+  --u: calc(100cqw / 402);
   --cu: calc(0.672 * var(--u));
-  position: absolute;
-  left: calc(357.4 * var(--u));
-  top: calc(18.4 * var(--u));
+  position: fixed;
+  top: calc(16 * var(--u));
+  right: calc(16 * var(--u));
   z-index: 1;
   width: calc(40 * var(--cu));
-  height: calc(39 * var(--cu));
+  height: calc(40 * var(--cu));
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 2px 12px rgb(11 11 11 / 0.18);
   overflow: hidden;
   cursor: pointer;
 }
@@ -140,7 +150,7 @@
 @media (min-width: 600px) {
   .case-stage {
     --u: calc(100cqw / 640);
-    height: calc((var(--panel-ht) + var(--gap)) * var(--u));
+    height: calc((var(--panel-ht) + var(--gap) * 2) * var(--u));
   }
 
   .case-panel {
@@ -148,9 +158,8 @@
   }
 
   .case-close {
+    --u: calc(100cqw / 640);
     --cu: calc(0.955 * var(--u));
-    left: calc(562.9 * var(--u));
-    top: calc(38.9 * var(--u));
   }
 }
 
@@ -168,8 +177,16 @@
   }
 
   .case-close {
+    --u: calc(100cqw / 1440);
     --cu: var(--u);
-    left: calc(1123 * var(--u));
-    top: calc(30 * var(--u));
+    position: absolute;
+    top: calc(90 * var(--u));
+    right: auto;
+    left: calc(1247 * var(--u));
+    width: calc(40 * var(--cu));
+    height: calc(39 * var(--cu));
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
   }
 }

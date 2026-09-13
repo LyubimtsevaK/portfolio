@@ -73,13 +73,13 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
             tabIndex={-1}
             className="case-panel"
           >
-            <button type="button" className="case-close" aria-label="Закрыть кейс" onClick={requestClose}>
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </button>
             {children}
           </div>
         </div>
+        <button type="button" className="case-close" aria-label="Закрыть кейс" onClick={requestClose}>
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </button>
       </div>
     </div>
   )

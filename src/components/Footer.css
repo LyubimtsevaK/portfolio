@@ -56,6 +56,21 @@
   text-underline-position: from-font;
 }
 
+/* резюме/behance/pinterest: на десктопе — каждая своей строкой (gap: inherit — тот же интервал,
+   что между остальными пунктами списка), на <1200px — в одну строку */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+}
+
+@media (max-width: 1199.98px) {
+  .footer-links {
+    flex-direction: row;
+    gap: calc(20 * var(--u));
+  }
+}
+
 .footer-arrow {
   position: absolute;
   left: calc(2.02 * var(--u));

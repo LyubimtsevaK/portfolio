@@ -27,16 +27,19 @@ export default function Footer() {
           <li>
             почта: <a href="mailto:lyubimtseva.kr@mail.ru" className="footer-contact-link">lyubimtseva.kr@mail.ru</a>
           </li>
-          <li>
+          {/* на <1200px — в одну строку; на десктопе (как в макете) — каждая ссылка отдельной строкой */}
+          <li className="footer-links">
             <a href="https://disk.yandex.ru/i/Sy-X_VRM9JuD8g" target="_blank" rel="noreferrer" className="footer-link">
               <ArrowIcon className="footer-arrow" />
               резюме
             </a>
-          </li>
-          <li>
             <a href="https://www.behance.net/lyubimtseva" target="_blank" rel="noreferrer" className="footer-link">
               <ArrowIcon className="footer-arrow" />
               behance
+            </a>
+            <a href="https://ru.pinterest.com/lyubimtseva_/" target="_blank" rel="noreferrer" className="footer-link">
+              <ArrowIcon className="footer-arrow" />
+              pinterest
             </a>
           </li>
         </ul>
