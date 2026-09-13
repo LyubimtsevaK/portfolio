@@ -124,6 +124,7 @@
 
 .pcard-cta {
   position: relative;
+  display: block;
   flex-shrink: 0;
   margin-top: auto;
   height: calc(19 * var(--u));

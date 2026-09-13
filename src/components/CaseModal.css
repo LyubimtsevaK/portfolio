@@ -1,0 +1,140 @@
+/* Оболочка модалки кейса. ≥1200px — координаты фрейма «проект - 1440 - пример» (--u = 1px макета);
+   <1200px — временная простая раскладка, пока нет данных мобильных макетов. */
+
+.case-open {
+  overflow: hidden;
+}
+
+.case-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--color-bg);
+}
+
+.case-scene {
+  position: relative;
+  overflow-x: clip;
+  container-type: inline-size;
+}
+
+.case-stage {
+  position: relative;
+  padding: 16px 12px 24px;
+}
+
+.case-blob {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.case-blob--5 {
+  left: -320px;
+  top: -170px;
+  width: 700px;
+}
+
+.case-blob--4 {
+  right: -420px;
+  top: 360px;
+  width: 760px;
+  rotate: 15deg;
+}
+
+.case-blob--6 {
+  display: none;
+}
+
+.case-panel {
+  position: relative;
+  background-color: #fff;
+  color: var(--color-ink);
+}
+
+.case-panel:focus {
+  outline: none;
+}
+
+.case-close {
+  --cu: 1px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: calc(40 * var(--cu));
+  height: calc(39 * var(--cu));
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* крестик из макета: две полосы 3×37, центр в (19.5, 19.5) */
+.case-close > span {
+  position: absolute;
+  left: calc(19.5 * var(--cu));
+  top: calc(19.5 * var(--cu));
+  width: calc(3 * var(--cu));
+  height: calc(37 * var(--cu));
+  background-color: var(--color-ink);
+  translate: -50% -50%;
+  rotate: 45deg;
+}
+
+.case-close > span + span {
+  rotate: -45deg;
+}
+
+.case-close:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1200px) {
+  .case-stage {
+    --u: calc(100cqw / 1440);
+    height: calc((var(--panel-h) + 120) * var(--u));
+    padding: 0;
+  }
+
+  .case-blob--5 {
+    left: calc(-464.07 * var(--u));
+    top: calc(-188.1 * var(--u));
+    width: calc(998.2 * var(--u));
+    height: calc(678.2 * var(--u));
+  }
+
+  .case-blob--4 {
+    right: auto;
+    left: calc(906.9 * var(--u));
+    top: calc(470.6 * var(--u));
+    width: calc(1065.48 * var(--u));
+    height: calc(773.69 * var(--u));
+  }
+
+  .case-blob--6 {
+    display: block;
+    left: calc(-368.6 * var(--u));
+    top: calc(1036 * var(--u));
+    width: calc(807.813 * var(--u));
+    height: calc(1136.79 * var(--u));
+    rotate: 65.62deg;
+  }
+
+  .case-panel {
+    position: absolute;
+    left: calc(124 * var(--u));
+    top: calc(60 * var(--u));
+    width: calc(1193 * var(--u));
+    height: calc(var(--panel-h) * var(--u));
+  }
+
+  .case-close {
+    --cu: var(--u);
+    left: calc(1123 * var(--u));
+    top: calc(30 * var(--u));
+    right: auto;
+  }
+}

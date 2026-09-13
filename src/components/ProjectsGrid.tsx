@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react'
 import cardRoutesVibes from '../assets/images/card-routes-vibes.jpg'
 import cardNadezhda from '../assets/images/card-nadezhda.jpg'
 import blob4At402 from '../assets/blobs/blob-4-402.svg'
@@ -15,7 +16,18 @@ const UI_SYSTEM: Tag = { label: 'UI System', desktop: 120, mobile: 92 }
 // в мобильных макетах этого тега нет; ширина рамки взята как у UI System
 const REDESIGN: Tag = { label: 'Redesign', desktop: 120, mobile: 92 }
 
-export default function ProjectsGrid() {
+type ProjectsGridProps = {
+  onOpenCase: (id: string) => void
+}
+
+export default function ProjectsGrid({ onOpenCase }: ProjectsGridProps) {
+  const openRoutesVibes = (event: MouseEvent<HTMLAnchorElement>) => {
+    // ctrl/cmd/средняя кнопка — пусть браузер откроет ссылку в новой вкладке как обычно
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    onOpenCase('routes-vibes')
+  }
+
   return (
     <section className="stage-section">
       <div className="stage projects-stage">
@@ -35,6 +47,8 @@ export default function ProjectsGrid() {
           title="Routes & Vibes - сервис для планирования путешествий"
           description="Проектирование многостраничного travel-сервиса: структура, пользовательские сценарии, UI-система, интерактивный прототип и адаптивные версии."
           cta="Смотреть кейс"
+          ctaHref="#routes-vibes"
+          onCtaClick={openRoutesVibes}
         />
 
         <ProjectCard

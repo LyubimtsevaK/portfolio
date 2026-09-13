@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, MouseEvent } from 'react'
 import ArrowIcon from './ArrowIcon'
 
 // ширины рамок тегов из макета: desktop — 1440/1920, mobile — 402/640
@@ -12,6 +12,8 @@ type ProjectCardProps = {
   title: string
   description: string
   cta: string
+  ctaHref?: string
+  onCtaClick?: (event: MouseEvent<HTMLAnchorElement>) => void
   badge?: string
   disabled?: boolean
 }
@@ -24,9 +26,13 @@ export default function ProjectCard({
   title,
   description,
   cta,
+  ctaHref,
+  onCtaClick,
   badge,
   disabled = false,
 }: ProjectCardProps) {
+  const ctaClass = disabled ? 'pcard-cta pcard-cta--disabled' : 'pcard-cta'
+
   return (
     <article className={`abs pcard ${className}`}>
       <ul className="pcard-tags">
@@ -50,10 +56,17 @@ export default function ProjectCard({
 
       <div className="pcard-foot">
         <p className="txt pcard-desc">{description}</p>
-        <p className={disabled ? 'pcard-cta pcard-cta--disabled' : 'pcard-cta'}>
-          <ArrowIcon className="pcard-arrow" />
-          {cta}
-        </p>
+        {ctaHref ? (
+          <a href={ctaHref} className={ctaClass} onClick={onCtaClick}>
+            <ArrowIcon className="pcard-arrow" />
+            {cta}
+          </a>
+        ) : (
+          <p className={ctaClass}>
+            <ArrowIcon className="pcard-arrow" />
+            {cta}
+          </p>
+        )}
       </div>
     </article>
   )

@@ -1,0 +1,410 @@
+/* Кейс Routes & Vibes.
+   ≥1200px — абсолютные координаты панели «проект - 1440 - пример»: --x/--y/--w/--h задаются в разметке, --u из CaseModal.css.
+   <1200px — ВРЕМЕННАЯ одноколоночная раскладка, пока нет данных мобильных макетов (640/402). */
+
+/* ---------- общее для обеих раскладок ---------- */
+
+.case-panel {
+  padding: 64px 20px 40px;
+}
+
+.cs-body {
+  font-size: 16px;
+  line-height: 1.375;
+  color: #000;
+}
+
+.cs-body > * + * {
+  margin-top: 1lh;
+}
+
+/* обрезка строки Hauora до верха заглавных и базовой линии, как text-box-trim в Figma; --L — line-height в долях кегля */
+.cs-trim {
+  line-height: var(--L);
+  margin-top: calc((0.337 - var(--L) / 2) * 1em);
+  margin-bottom: calc((0.383 - var(--L) / 2) * 1em);
+}
+
+.cs-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cs-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.cs-title-text {
+  --L: 0.884;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+.cs-paren {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-paren > span {
+  display: block;
+  flex-shrink: 0;
+  font-family: var(--font-accent);
+  font-size: 64px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+  rotate: 7.92deg;
+  transform: skewX(-0.12deg);
+}
+
+.cs-intro {
+  text-align: center;
+}
+
+.cs-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.cs-h {
+  --L: 1.366;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* «58.58%» в Figma — доля от авто-интервала 1.366 → 0.8 кегля */
+.cs-h--tight {
+  --L: 0.8;
+}
+
+.cs-h--solution {
+  --L: 0.861;
+  text-align: center;
+}
+
+.cs-h--84 {
+  --L: 0.8606;
+  font-size: 40px;
+}
+
+.cs-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-fill > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* в макете картинка растянута на рамку без кропа (object-fit: fill), так и повторяем */
+.cs-fill--stretch > img {
+  object-fit: fill;
+}
+
+.cs-fill--dim > img {
+  opacity: 0.8;
+}
+
+.cs-media {
+  width: 100%;
+  aspect-ratio: var(--w) / var(--h);
+}
+
+.cs-group {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--gw) / var(--gh);
+}
+
+.cs-in {
+  position: absolute;
+  left: calc(var(--cx) / var(--gw) * 100%);
+  top: calc(var(--cy) / var(--gh) * 100%);
+  width: calc(var(--cw) / var(--gw) * 100%);
+  height: calc(var(--ch) / var(--gh) * 100%);
+}
+
+.cs-bleed {
+  width: calc(100% + 40px);
+  margin-inline: -20px;
+}
+
+.cs-deco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-deco > span {
+  position: relative;
+  flex-shrink: 0;
+  scale: 1 -1;
+  rotate: 11.14deg;
+  transform: skewX(-0.85deg);
+}
+
+.cs-deco > span > img {
+  position: absolute;
+  max-width: none;
+}
+
+/* скругление iPad 36px из макета, в процентах — чтобы масштабировалось вместе с группой */
+.cs-ipad {
+  border-radius: 9.287% / 7.104%;
+}
+
+.cs-softlight {
+  isolation: isolate;
+}
+
+.cs-softlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+  mix-blend-mode: soft-light;
+}
+
+.cs-kit {
+  border: 2px solid var(--color-pink);
+}
+
+.cs-cards {
+  display: grid;
+  gap: 10px;
+}
+
+.cs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background-color: var(--color-pink);
+}
+
+.cs-card-title {
+  --L: 0.861;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+.cs-lead {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3889;
+  color: #000;
+}
+
+.cs-link {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+
+.cs-principle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-principle-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.375;
+  color: #000;
+}
+
+.cs-note {
+  padding: 10px;
+  background-color: var(--color-pink);
+}
+
+.cs-note--principle {
+  padding: 6px 6px 8px 7px;
+}
+
+/* в узкой раскладке строки списка переносятся, поэтому маркер (верхний из картинки макета) ставим на каждый пункт */
+.cs-list > li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.cs-list > li::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 7px;
+  width: 18.401px;
+  height: 16px;
+  background: url('../assets/case/task-bullets.svg') no-repeat 0 0 / 18.401px 103px;
+}
+
+.cs-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.cs-thanks {
+  --L: 0.861;
+  margin-top: 64px;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* ручные переносы строк из макета нужны только в раскладке 1440 */
+@media (max-width: 1199.98px) {
+  .cs-br {
+    display: none;
+  }
+}
+
+/* ---------- 1440: координаты панели ---------- */
+
+@media (min-width: 1200px) {
+  .case-panel {
+    padding: 0;
+  }
+
+  .cs-head,
+  .cs-title,
+  .cs-sec,
+  .cs-cards,
+  .cs-pair,
+  .cs-principle {
+    display: block;
+    margin: 0;
+  }
+
+  .cs-abs {
+    position: absolute;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u));
+    height: calc(var(--h) * var(--u));
+  }
+
+  .cs-group {
+    position: absolute;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--gw) * var(--u));
+    height: calc(var(--gh) * var(--u));
+    aspect-ratio: auto;
+  }
+
+  .cs-bleed {
+    margin-inline: 0;
+  }
+
+  .cs-body {
+    font-size: calc(16 * var(--u));
+  }
+
+  .cs-title-text {
+    font-size: calc(65 * var(--u));
+  }
+
+  .cs-paren {
+    width: calc(59.4 * var(--u));
+    height: calc(91 * var(--u));
+  }
+
+  .cs-paren > span {
+    width: calc(47.932 * var(--u));
+    height: calc(85.233 * var(--u));
+    font-size: calc(133 * var(--u));
+  }
+
+  /* верх заглавных Arsenal SC при line-height: 1 */
+  .cs-paren > span > span {
+    display: block;
+    margin-top: -0.223em;
+  }
+
+  .cs-h {
+    font-size: calc(64 * var(--u));
+  }
+
+  .cs-h--84 {
+    font-size: calc(84 * var(--u));
+  }
+
+  .cs-card {
+    display: block;
+    padding: 0;
+  }
+
+  .cs-card-title {
+    font-size: calc(30 * var(--u));
+  }
+
+  .cs-lead {
+    font-size: calc(18 * var(--u));
+  }
+
+  .cs-principle-title {
+    font-size: calc(24 * var(--u));
+    white-space: nowrap;
+  }
+
+  .cs-note {
+    padding: calc(10 * var(--u));
+  }
+
+  .cs-note--principle {
+    padding: 0 calc(6 * var(--u)) calc(5 * var(--u)) calc(7 * var(--u));
+  }
+
+  /* в 1440 — как в Figma: одна картинка маркеров на весь список, текст сдвинут пробелами */
+  .cs-list {
+    background: url('../assets/case/task-bullets.svg') no-repeat calc(3 * var(--u)) calc(7 * var(--u)) /
+      calc(18.401 * var(--u)) calc(103 * var(--u));
+  }
+
+  .cs-list > li {
+    padding-left: 0;
+    white-space: pre-wrap;
+  }
+
+  .cs-list > li::before {
+    content: none;
+  }
+
+  .cs-thanks {
+    margin-top: 0;
+    font-size: calc(64 * var(--u));
+    white-space: nowrap;
+  }
+}
