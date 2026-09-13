@@ -1,5 +1,5 @@
-/* Оболочка модалки кейса. ≥1200px — координаты фрейма «проект - 1440 - пример» (--u = 1px макета);
-   <1200px — временная простая раскладка, пока нет данных мобильных макетов. */
+/* Оболочка модалки кейса. База — макет 402, ≥600px — 640 (панель во весь экран, без фона с пятнами);
+   ≥1200px — фрейм «проект - 1440 - пример»: панель 1193 с отступом 60 поверх фона с пятнами. --u = 1px макета. */
 
 .case-open {
   overflow: hidden;
@@ -21,36 +21,25 @@
 }
 
 .case-stage {
+  --u: calc(100cqw / 402);
   position: relative;
-  padding: 16px 12px 24px;
+  height: calc(var(--panel-hm) * var(--u));
 }
 
 .case-blob {
   position: absolute;
+  display: none;
   max-width: none;
   pointer-events: none;
   user-select: none;
 }
 
-.case-blob--5 {
-  left: -320px;
-  top: -170px;
-  width: 700px;
-}
-
-.case-blob--4 {
-  right: -420px;
-  top: 360px;
-  width: 760px;
-  rotate: 15deg;
-}
-
-.case-blob--6 {
-  display: none;
-}
-
 .case-panel {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(var(--panel-hm) * var(--u));
   background-color: #fff;
   color: var(--color-ink);
 }
@@ -59,11 +48,12 @@
   outline: none;
 }
 
+/* крестик из макета: коробка 40×39, две полосы 3×37 с центром (19.5, 19.5); --cu — масштаб коробки */
 .case-close {
-  --cu: 1px;
+  --cu: calc(0.672 * var(--u));
   position: absolute;
-  top: 12px;
-  right: 12px;
+  left: calc(357.4 * var(--u));
+  top: calc(18.4 * var(--u));
   z-index: 1;
   width: calc(40 * var(--cu));
   height: calc(39 * var(--cu));
@@ -71,7 +61,6 @@
   cursor: pointer;
 }
 
-/* крестик из макета: две полосы 3×37, центр в (19.5, 19.5) */
 .case-close > span {
   position: absolute;
   left: calc(19.5 * var(--cu));
@@ -92,11 +81,31 @@
   outline-offset: 2px;
 }
 
+@media (min-width: 600px) {
+  .case-stage {
+    --u: calc(100cqw / 640);
+    height: calc(var(--panel-ht) * var(--u));
+  }
+
+  .case-panel {
+    height: calc(var(--panel-ht) * var(--u));
+  }
+
+  .case-close {
+    --cu: calc(0.955 * var(--u));
+    left: calc(562.9 * var(--u));
+    top: calc(38.9 * var(--u));
+  }
+}
+
 @media (min-width: 1200px) {
   .case-stage {
     --u: calc(100cqw / 1440);
     height: calc((var(--panel-h) + 120) * var(--u));
-    padding: 0;
+  }
+
+  .case-blob {
+    display: block;
   }
 
   .case-blob--5 {
@@ -107,15 +116,14 @@
   }
 
   .case-blob--4 {
-    right: auto;
     left: calc(906.9 * var(--u));
     top: calc(470.6 * var(--u));
     width: calc(1065.48 * var(--u));
     height: calc(773.69 * var(--u));
+    rotate: 15deg;
   }
 
   .case-blob--6 {
-    display: block;
     left: calc(-368.6 * var(--u));
     top: calc(1036 * var(--u));
     width: calc(807.813 * var(--u));
@@ -124,7 +132,6 @@
   }
 
   .case-panel {
-    position: absolute;
     left: calc(124 * var(--u));
     top: calc(60 * var(--u));
     width: calc(1193 * var(--u));
@@ -135,6 +142,5 @@
     --cu: var(--u);
     left: calc(1123 * var(--u));
     top: calc(30 * var(--u));
-    right: auto;
   }
 }

@@ -6,8 +6,8 @@ import './CaseModal.css'
 
 type CaseModalProps = {
   titleId: string
-  // высота панели кейса в px макета 1440; сцена = панель + отступы 60 сверху и снизу
-  panelHeight: number
+  // высота панели кейса в px макетов: d — 1440, t — 640, m — 402
+  panelHeight: { d: number; t: number; m: number }
   // куда вернуть фокус после закрытия (кнопка, которой открыли кейс)
   returnFocusRef: RefObject<HTMLElement | null>
   onClose: () => void
@@ -39,14 +39,16 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
     if (!panelRef.current?.contains(event.target as Node)) onClose()
   }
 
+  const stageVars = {
+    '--panel-h': panelHeight.d,
+    '--panel-ht': panelHeight.t,
+    '--panel-hm': panelHeight.m,
+  } as CSSProperties
+
   return (
     <div className="case-overlay">
       <div className="case-scene">
-        <div
-          className="case-stage"
-          style={{ '--panel-h': panelHeight } as CSSProperties}
-          onClick={onSceneClick}
-        >
+        <div className="case-stage" style={stageVars} onClick={onSceneClick}>
           <img src={blob5} alt="" aria-hidden="true" className="case-blob case-blob--5" />
           <img src={blob4} alt="" aria-hidden="true" className="case-blob case-blob--4" />
           <img src={blob6} alt="" aria-hidden="true" className="case-blob case-blob--6" />
