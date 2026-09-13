@@ -1,0 +1,23 @@
+/tmp
+/out-tsc
+/dist
+.idea/
+
+/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.pnp
+.pnp.js
+
+.vscode/*
+
+img.png
+img_1.png
+img_2.png
+CLAUDE.md
+Memory.md
+окно - 1920.png
+проект - 402.png
+проект - 640.png
+проект - 1440 - пример.png
