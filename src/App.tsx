@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Hero from './components/Hero'
 import ProjectsGrid from './components/ProjectsGrid'
 import Footer from './components/Footer'
@@ -7,11 +8,16 @@ import RoutesVibesCase, {
   ROUTES_VIBES_PANEL_HEIGHT,
   ROUTES_VIBES_TITLE_ID,
 } from './components/RoutesVibesCase'
+import { countCaseView } from './analytics'
 import { useCaseHash } from './useCaseHash'
 
 export default function App() {
   const { caseId, openCase, closeCase, openerRef } = useCaseHash()
   const routesVibesOpen = caseId === ROUTES_VIBES_ID
+
+  useEffect(() => {
+    if (routesVibesOpen) countCaseView(ROUTES_VIBES_ID)
+  }, [routesVibesOpen])
 
   return (
     <>

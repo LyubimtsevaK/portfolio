@@ -1,4 +1,5 @@
 import heroPhoto from '../assets/images/hero-photo.jpg'
+import { countClick } from '../analytics'
 import { RESUME_URL, TELEGRAM_URL } from '../links'
 import './stage.css'
 import './Hero.css'
@@ -26,7 +27,13 @@ export default function Hero() {
 
         <img src={heroPhoto} alt="Кристина Любимцева" className="abs box hero-photo" />
 
-        <a href={RESUME_URL} target="_blank" rel="noreferrer" className="abs box hero-resume">
+        <a
+          href={RESUME_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="abs box hero-resume"
+          onClick={() => countClick('resume-hero', 'Резюме: звезда в шапке')}
+        >
           <svg viewBox="-100 -100 200 200" aria-hidden="true" className="hero-star">
             <polygon points={starPoints} />
           </svg>
@@ -50,7 +57,13 @@ export default function Hero() {
           </p>
         </div>
 
-        <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="abs txt trim hero-tg">
+        <a
+          href={TELEGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="abs txt trim hero-tg"
+          onClick={() => countClick('telegram-hero', 'Telegram: шапка')}
+        >
           tg: @lyubimtseva_k
         </a>
       </div>

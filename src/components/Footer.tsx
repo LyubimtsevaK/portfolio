@@ -1,4 +1,5 @@
 import footerCat from '../assets/images/footer-cat.png'
+import { countClick } from '../analytics'
 import { RESUME_URL, TELEGRAM_URL } from '../links'
 import ArrowIcon from './ArrowIcon'
 import './stage.css'
@@ -18,6 +19,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               className="footer-contact-link"
+              onClick={() => countClick('telegram-footer', 'Telegram: футер')}
             >
               @lyubimtseva_k
             </a>
@@ -30,15 +32,33 @@ export default function Footer() {
           </li>
           {/* на <1200px — в одну строку; на десктопе (как в макете) — каждая ссылка отдельной строкой */}
           <li className="footer-links">
-            <a href={RESUME_URL} target="_blank" rel="noreferrer" className="footer-link">
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+              onClick={() => countClick('resume-footer', 'Резюме: футер')}
+            >
               <ArrowIcon className="footer-arrow" />
               резюме
             </a>
-            <a href="https://www.behance.net/lyubimtseva" target="_blank" rel="noreferrer" className="footer-link">
+            <a
+              href="https://www.behance.net/lyubimtseva"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+              onClick={() => countClick('behance', 'Behance: футер')}
+            >
               <ArrowIcon className="footer-arrow" />
               behance
             </a>
-            <a href="https://ru.pinterest.com/lyubimtseva_/" target="_blank" rel="noreferrer" className="footer-link">
+            <a
+              href="https://ru.pinterest.com/lyubimtseva_/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+              onClick={() => countClick('pinterest', 'Pinterest: футер')}
+            >
               <ArrowIcon className="footer-arrow" />
               pinterest
             </a>
