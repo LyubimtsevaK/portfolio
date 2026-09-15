@@ -1,4 +1,5 @@
 import footerCat from '../assets/images/footer-cat.png'
+import { RESUME_URL, TELEGRAM_URL } from '../links'
 import ArrowIcon from './ArrowIcon'
 import './stage.css'
 import './Footer.css'
@@ -13,7 +14,7 @@ export default function Footer() {
           <li>
             телеграм:{' '}
             <a
-              href="https://t.me/lyubimtseva_k"
+              href={TELEGRAM_URL}
               target="_blank"
               rel="noreferrer"
               className="footer-contact-link"
@@ -29,7 +30,7 @@ export default function Footer() {
           </li>
           {/* на <1200px — в одну строку; на десктопе (как в макете) — каждая ссылка отдельной строкой */}
           <li className="footer-links">
-            <a href="https://disk.yandex.ru/i/aZXmIsXE41766w" target="_blank" rel="noreferrer" className="footer-link">
+            <a href={RESUME_URL} target="_blank" rel="noreferrer" className="footer-link">
               <ArrowIcon className="footer-arrow" />
               резюме
             </a>

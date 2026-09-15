@@ -1,11 +1,6 @@
 import type { MouseEvent } from 'react'
 import cardRoutesVibes from '../assets/images/card-routes-vibes.jpg'
 import cardNadezhda from '../assets/images/card-nadezhda.jpg'
-import blob4At402 from '../assets/blobs/blob-4-402.svg'
-import blob6At402 from '../assets/blobs/blob-6-402.svg'
-import blob6At640 from '../assets/blobs/blob-6-640.svg'
-import blob6 from '../assets/blobs/blob-6.svg'
-import Blob from './Blob'
 import ProjectCard, { type Tag } from './ProjectCard'
 import './stage.css'
 import './Projects.css'
@@ -31,12 +26,6 @@ export default function ProjectsGrid({ onOpenCase }: ProjectsGridProps) {
   return (
     <section className="stage-section">
       <div className="stage projects-stage">
-        <Blob
-          sources={{ at402: blob6At402, at640: blob6At640, at1440: blob6, at1920: blob6 }}
-          className="abs box blob projects-blob--6"
-        />
-        <img src={blob4At402} alt="" aria-hidden="true" className="abs box blob projects-blob--7" />
-
         <h2 className="abs txt trim projects-title">проекты</h2>
 
         <ProjectCard

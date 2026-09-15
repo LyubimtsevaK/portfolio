@@ -1,6 +1,5 @@
 /* Секции-«сцены» по координатам макетов Figma (402/640/1440/1920).
-   --u = 1px макета в текущей ширине, поэтому композиция масштабируется целиком.
-   Брейкпоинты должны совпадать с <source media> в Blob.tsx. */
+   --u = 1px макета в текущей ширине, поэтому композиция масштабируется целиком. */
 
 .stage-section {
   position: relative;
@@ -37,12 +36,6 @@
 .box {
   width: calc(var(--w) * var(--u));
   height: calc(var(--h) * var(--u));
-}
-
-.blob {
-  max-width: none;
-  pointer-events: none;
-  user-select: none;
 }
 
 .txt {

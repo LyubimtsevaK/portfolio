@@ -16,16 +16,6 @@
   color: var(--color-ink);
 }
 
-.projects-blob--6 {
-  --x: -186.1; --y: -200.6; --w: 521.676; --h: 652.568;
-  rotate: 65.62deg;
-}
-
-.projects-blob--7 {
-  --x: 153.1; --y: 526.8; --w: 513.471; --h: 416.851;
-  rotate: 15deg;
-}
-
 /* в мобильных макетах карточка фиксированной высоты и CTA прижат к низу, в десктопных — высота по содержимому */
 .pcard {
   display: flex;
@@ -152,8 +142,6 @@
 @media (min-width: 600px) {
   .projects-stage { --stage-h: 542.2; }
   .projects-title { --fs: 44; --y: 7.2; left: 50%; }
-  .projects-blob--6 { --x: -272.3; --y: 72.9; --w: 621.804; --h: 822.011; }
-  .projects-blob--7 { display: none; }
   .pcard--1 { --x: 30; --y: 69.2; }
   .pcard--2 { --x: 325; --y: 69.2; }
 }
@@ -162,7 +150,6 @@
 @media (min-width: 1200px) {
   .projects-stage { --stage-h: 987.4; }
   .projects-title { --fs: 64; --y: 10.4; }
-  .projects-blob--6 { --x: -145.6; --y: 61.4; --w: 807.813; --h: 1136.79; }
 
   .pcard {
     gap: calc(20 * var(--u));
@@ -228,7 +215,6 @@
 @media (min-width: 1680px) {
   .projects-stage { --stage-h: 962.7; }
   .projects-title { --fs: 84; --y: 13.7; }
-  .projects-blob--6 { --x: -53.6; --y: 96.7; }
   .pcard--1 { --x: 377; --y: 133.7; }
   .pcard--2 { --x: 970; --y: 133.7; }
 }
