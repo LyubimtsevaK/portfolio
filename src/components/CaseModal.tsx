@@ -6,8 +6,9 @@ const CLOSE_DURATION_MS = 300
 
 type CaseModalProps = {
   titleId: string
-  // высота панели кейса в px макетов: d — 1440, t — 640, m — 402
-  panelHeight: { d: number; t: number; m: number }
+  // высота панели кейса в px макетов: d — десктоп, t — 640, m — 402;
+  // если t/m не заданы, <1200px панель тянется содержимым (кейс свёрстан потоком)
+  panelHeight: { d: number; t?: number; m?: number }
   // куда вернуть фокус после закрытия (кнопка, которой открыли кейс)
   returnFocusRef: RefObject<HTMLElement | null>
   onClose: () => void
@@ -55,6 +56,7 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
     if (!panelRef.current?.contains(event.target as Node)) requestClose()
   }
 
+  const flow = panelHeight.t === undefined || panelHeight.m === undefined
   const stageVars = {
     '--panel-h': panelHeight.d,
     '--panel-ht': panelHeight.t,
@@ -64,7 +66,11 @@ export default function CaseModal({ titleId, panelHeight, returnFocusRef, onClos
   return (
     <div className={closing ? 'case-overlay case-overlay--closing' : 'case-overlay'}>
       <div className="case-scene">
-        <div className="case-stage" style={stageVars} onClick={onSceneClick}>
+        <div
+          className={flow ? 'case-stage case-stage--flow' : 'case-stage'}
+          style={stageVars}
+          onClick={onSceneClick}
+        >
           <div
             ref={panelRef}
             role="dialog"

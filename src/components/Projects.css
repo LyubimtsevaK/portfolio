@@ -30,7 +30,7 @@
 .pcard--1 { --x: 59; --y: 59.5; }
 .pcard--2 { --x: 59; --y: 472.5; }
 
-/* 4 тега не помещаются в 257px мобильной карточки — последний переносится на вторую строку */
+/* три тега не помещаются в 257px мобильной карточки — последний переносится на вторую строку */
 .pcard-tags {
   display: flex;
   flex-wrap: wrap;
@@ -73,22 +73,6 @@
   object-fit: cover;
 }
 
-.pcard-badge {
-  position: absolute;
-  left: calc(8 * var(--u));
-  bottom: calc(8 * var(--u));
-  width: calc(114 * var(--u));
-  height: calc(27 * var(--u));
-  border-radius: calc(6 * var(--u));
-  background-color: var(--color-pink);
-  font-size: calc(16 * var(--u));
-  font-weight: 600;
-  line-height: calc(27 * var(--u));
-  text-align: center;
-  white-space: nowrap;
-  color: #fff;
-}
-
 .pcard-title {
   --fs: 20;
   --L: 0.866;
@@ -101,6 +85,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  /* минимальный зазор до CTA: у карточки с двумя строками тегов свободного места не остаётся */
+  row-gap: calc(8 * var(--u));
 }
 
 .pcard-desc {
@@ -124,10 +110,6 @@
   line-height: calc(19 * var(--u));
   white-space: nowrap;
   color: var(--color-ink);
-}
-
-.pcard-cta--disabled {
-  color: var(--color-muted);
 }
 
 .pcard-arrow {
@@ -176,22 +158,10 @@
 
   .pcard-media { height: calc(346 * var(--u)); }
 
-  .pcard-badge {
-    left: calc(13 * var(--u));
-    bottom: calc(14 * var(--u));
-    width: calc(149 * var(--u));
-    height: calc(39 * var(--u));
-    border-radius: calc(11 * var(--u));
-    font-size: calc(20 * var(--u));
-    font-weight: 700;
-    line-height: calc(39 * var(--u));
-  }
-
   /* в макете «63.4%» — доля от авто-интервала Hauora (1.366), т.е. те же 0.866 кегля, что и на мобильных */
   .pcard-title { --fs: 38; }
 
   .pcard-foot { flex: none; gap: calc(38 * var(--u)); }
-  .pcard--2 .pcard-foot { gap: calc(60 * var(--u)); }
 
   .pcard-desc { --fs: 16; --L: 1.375; margin: 0; color: var(--color-ink); }
 

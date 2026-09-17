@@ -11,16 +11,18 @@ const UI_SYSTEM: Tag = { label: 'UI System', desktop: 120, mobile: 92 }
 // в мобильных макетах этого тега нет; ширина рамки взята как у UI System
 const REDESIGN: Tag = { label: 'Redesign', desktop: 120, mobile: 92 }
 
+const CASES = { routesVibes: 'routes-vibes', nadezhda: 'nadezhda' } as const
+
 type ProjectsGridProps = {
   onOpenCase: (id: string) => void
 }
 
 export default function ProjectsGrid({ onOpenCase }: ProjectsGridProps) {
-  const openRoutesVibes = (event: MouseEvent<HTMLElement>) => {
-    // ctrl/cmd/средняя кнопка — пусть браузер откроет ссылку в новой вкладке как обычно
+  // ctrl/cmd/средняя кнопка — пусть браузер откроет ссылку в новой вкладке как обычно
+  const openCase = (id: string) => (event: MouseEvent<HTMLElement>) => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     event.preventDefault()
-    onOpenCase('routes-vibes')
+    onOpenCase(id)
   }
 
   return (
@@ -36,20 +38,20 @@ export default function ProjectsGrid({ onOpenCase }: ProjectsGridProps) {
           title="Routes & Vibes - сервис для планирования путешествий"
           description="Проектирование многостраничного travel-сервиса: структура, пользовательские сценарии, UI-система, интерактивный прототип и адаптивные версии."
           cta="Смотреть кейс"
-          ctaHref="#routes-vibes"
-          onCtaClick={openRoutesVibes}
+          ctaHref={`#${CASES.routesVibes}`}
+          onCtaClick={openCase(CASES.routesVibes)}
         />
 
         <ProjectCard
           className="pcard--2"
-          tags={[REDESIGN, WEB, USER_FLOW, UI_SYSTEM]}
+          tags={[REDESIGN, USER_FLOW, UI_SYSTEM]}
           image={cardNadezhda}
-          imageAlt="Ноутбук с сайтом приюта для животных «Надежда» среди травы"
-          title="Надежда - редизайн сайта приюта для животных"
-          description="Новая структура сайта с акцентом на пользовательские сценарии, актуальность контента и простоту взаимодействия."
-          cta="Скоро можно будет посмотреть"
-          badge="В процессе"
-          disabled
+          imageAlt="Ноутбук с главной страницей нового сайта приюта «Надежда»"
+          title="Надежда — редизайн сайта приюта для животных"
+          description="Сайт стал точкой входа в экосистему приюта: помогает выбрать нужный сценарий и перейти к актуальной информации без дублирования соцсетей."
+          cta="Смотреть кейс"
+          ctaHref={`#${CASES.nadezhda}`}
+          onCtaClick={openCase(CASES.nadezhda)}
         />
       </div>
     </section>

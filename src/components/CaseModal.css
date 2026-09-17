@@ -190,3 +190,18 @@
     box-shadow: none;
   }
 }
+
+/* Кейсы без отдельных мобильных макетов (например «Надежда») <1200px верстаются потоком:
+   высоту панели задаёт содержимое, а не --panel-ht/--panel-hm. */
+@media (max-width: 1199.98px) {
+  .case-stage--flow {
+    height: auto;
+    padding-block: calc(var(--gap) * var(--u));
+  }
+
+  .case-stage--flow > .case-panel {
+    position: relative;
+    top: 0;
+    height: auto;
+  }
+}

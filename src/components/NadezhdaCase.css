@@ -1,0 +1,304 @@
+/* Кейс «Надежда».
+   ≥1200px — абсолютные координаты макета «Проект - окно» (панель 1595×15200, nadezhdaLayout.ts).
+   <1200px — обычный поток: отдельных мобильных макетов у этого кейса в Figma нет,
+   раскладка собрана по правилам кейса Routes & Vibes (одна колонка, поля 20px, та же типографика).
+   --u = 1px макета в текущей ширине. */
+
+.nd {
+  --u: calc(100cqw / 402);
+  --accent: #f37d88;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(60 * var(--u));
+  padding: calc(40 * var(--u)) calc(20 * var(--u)) calc(60 * var(--u));
+}
+
+.nd-sec {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--u));
+}
+
+.nd-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(14 * var(--u));
+}
+
+/* ---------- типографика ---------- */
+
+.nd-body {
+  font-size: calc(12 * var(--u));
+  line-height: 1.3333;
+  color: #000;
+}
+
+.nd-body > * + * {
+  margin-top: 1lh;
+}
+
+/* обрезка строки Hauora до верха заглавных, как text-box-trim в Figma; --L — интерлиньяж в долях кегля */
+.nd-trim {
+  line-height: var(--L);
+  margin-top: calc((0.337 - var(--L) / 2) * 1em);
+}
+
+.nd-h {
+  --L: 0.866;
+  font-size: calc(34 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* перенос строки, как в макете (в потоке на мобильных не нужен) */
+.nd-br {
+  display: none;
+}
+
+/* «контекст и проблема» — единственный заголовок с более плотным интерлиньяжем (69px при кегле 84) */
+.nd-h--tight {
+  --L: 0.8214;
+}
+
+.nd-h--center {
+  text-align: center;
+}
+
+.nd-title {
+  --L: 0.884;
+  font-size: calc(34 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* скобки — геометрия макета (кегль 133 при --pk 1), масштабируется через --pk */
+.nd-paren {
+  --pk: 0.527;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: calc(59.4 * var(--pk) * var(--u));
+  height: calc(91 * var(--pk) * var(--u));
+}
+
+.nd-paren > span {
+  display: block;
+  flex-shrink: 0;
+  width: calc(47.932 * var(--pk) * var(--u));
+  height: calc(85.233 * var(--pk) * var(--u));
+  font-family: var(--font-accent);
+  font-size: calc(133 * var(--pk) * var(--u));
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+  rotate: 7.92deg;
+  transform: skewX(-0.12deg);
+}
+
+/* верх заглавных Arsenal SC при line-height: 1 */
+.nd-paren > span > span {
+  display: block;
+  margin-top: -0.223em;
+}
+
+.nd-thanks {
+  --L: 0.866;
+  font-size: calc(34 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: lowercase;
+  color: var(--color-ink);
+}
+
+/* ---------- акценты ---------- */
+
+.nd-hl {
+  background-color: var(--color-pink);
+  color: inherit;
+}
+
+.nd-ac {
+  color: var(--accent);
+}
+
+/* ---------- теги роли ---------- */
+
+.nd-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(8 * var(--u));
+}
+
+.nd-role {
+  padding: 0 calc(9 * var(--u));
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: calc(12 * var(--u));
+  line-height: calc(20 * var(--u));
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+/* ---------- картинки и заметки ---------- */
+
+.nd-media {
+  position: relative;
+}
+
+.nd-media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* обводка поверх картинки, как stroke в Figma: border сжимал бы изображение внутрь рамки */
+.nd-media--framed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-pink);
+  pointer-events: none;
+}
+
+.nd-arrow {
+  display: none;
+}
+
+.nd-note {
+  padding: calc(10 * var(--u)) calc(12 * var(--u));
+  background-color: var(--color-pink);
+  font-size: calc(12 * var(--u));
+  line-height: 1.3333;
+  color: #000;
+}
+
+/* ---------- 640 ---------- */
+
+@media (min-width: 600px) {
+  .nd {
+    --u: calc(100cqw / 640);
+    gap: calc(80 * var(--u));
+    padding: calc(48 * var(--u)) calc(20 * var(--u)) calc(80 * var(--u));
+  }
+
+  .nd-sec {
+    gap: calc(24 * var(--u));
+  }
+
+  .nd-h {
+    font-size: calc(44 * var(--u));
+  }
+
+  .nd-title {
+    font-size: calc(55 * var(--u));
+  }
+
+  .nd-paren {
+    --pk: 0.7595;
+  }
+
+  .nd-thanks {
+    font-size: calc(44 * var(--u));
+  }
+
+  .nd-role {
+    padding: 0 calc(11 * var(--u));
+    font-size: calc(14 * var(--u));
+    line-height: calc(24 * var(--u));
+  }
+
+  .nd-note {
+    padding: calc(12 * var(--u)) calc(16 * var(--u));
+    font-size: calc(14 * var(--u));
+    line-height: 1.357;
+  }
+}
+
+/* ---------- ≥1200px: макет 1595 ----------
+   Панель занимает 1193 из 1440 ширины сцены (CaseModal.css), а макет кейса нарисован
+   на панели 1595 → 1px макета = 100cqw / (1440 * 1595 / 1193). */
+
+@media (min-width: 1200px) {
+  .nd {
+    --u: calc(100cqw / 1925.23);
+    display: block;
+    height: calc(15200 * var(--u));
+    padding: 0;
+  }
+
+  .nd-sec,
+  .nd-head {
+    display: block;
+  }
+
+  .nd-el {
+    position: absolute;
+    left: calc(var(--x) * var(--u));
+    top: calc(var(--y) * var(--u));
+    width: calc(var(--w) * var(--u));
+    height: calc(var(--h) * var(--u));
+  }
+
+  .nd-body {
+    font-size: calc(16 * var(--u));
+    line-height: 1.375;
+  }
+
+  .nd-h {
+    font-size: calc(84 * var(--u));
+  }
+
+  .nd-title {
+    font-size: calc(84 * var(--u));
+  }
+
+  .nd-br {
+    display: inline;
+  }
+
+  .nd-paren {
+    --pk: 0.998;
+  }
+
+  .nd-thanks {
+    font-size: calc(84 * var(--u));
+  }
+
+  .nd-roles {
+    gap: calc(10 * var(--u));
+  }
+
+  /* ширины рамок взяты из макета — так строки переносятся ровно как в Figma */
+  .nd-role {
+    width: calc(var(--tw) * var(--u));
+    padding: 0;
+    font-size: calc(16 * var(--u));
+    line-height: calc(24 * var(--u));
+    text-align: center;
+  }
+
+  .nd-media > img {
+    object-fit: fill;
+  }
+
+  .nd-arrow {
+    display: block;
+  }
+
+  .nd-note {
+    padding: calc(10 * var(--u)) calc(19 * var(--u));
+    font-size: calc(16 * var(--u));
+    line-height: 1.375;
+  }
+}
